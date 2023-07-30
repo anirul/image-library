@@ -1,0 +1,12 @@
+{
+    "name": "image-library",
+    "version": "0.1-alpha",
+    "homepage": "https://github.com/anirul/image-library",
+    "description": "An image independent simple library.",
+    "dependencies": [
+        "abseil",
+        "glm",
+        "gtest",
+        "opencv"
+    ]
+}

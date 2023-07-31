@@ -17,3 +17,5 @@ find_package(OpenCV CONFIG REQUIRED)
 
 # Sources
 add_subdirectory(TinyImageLibrary)
+add_subdirectory(TinyImageLibraryTest)
+add_subdirectory(ZoomApp)

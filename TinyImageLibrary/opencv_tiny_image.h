@@ -14,9 +14,10 @@ namespace tiny_image {
         ~OpenCVTinyImage() override = default;
         void Open(std::string_view filename) override;
         void Save(std::string_view filename) override;
-        void Resize(int width, int height) override;
-        void Crop(int x, int y, int width, int height) override;
-        std::tuple<int, int> Size() const override;
+        void Resize(glm::uvec2 size) override;
+        void Crop(glm::uvec4 rect) override;
+        glm::uvec2 Size() const override;
+        void* Data() const override;
         
     protected:
         cv::Mat img_;

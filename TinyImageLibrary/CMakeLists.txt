@@ -16,6 +16,9 @@ target_link_libraries(tiny_image_library
     PRIVATE 
         glm::glm
         opencv_core
+        opencv_highgui 
+        opencv_imgcodecs 
+        opencv_imgproc
 )
 
 set_property(TARGET tiny_image_library PROPERTY FOLDER "TinyImageLibrary")

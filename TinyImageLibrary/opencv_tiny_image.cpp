@@ -1,10 +1,15 @@
 #include "TinyImageLibrary/opencv_tiny_image.h"
 
+#include <stdexcept>
+
 namespace tiny_image {
 
     void OpenCVTinyImage::Open(std::string_view filename)
     {
         img_ = cv::imread(filename.data(), cv::IMREAD_COLOR);
+        if (img_.empty()) {
+            throw std::runtime_error("Failed to open image.");
+        }
     }
 
     void OpenCVTinyImage::Save(std::string_view filename)
@@ -12,20 +17,25 @@ namespace tiny_image {
         cv::imwrite("output.jpg", img_);
     }
 
-    void OpenCVTinyImage::Resize(int width, int height)
+    void OpenCVTinyImage::Resize(glm::uvec2 size)
     {
-        cv::resize(img_, img_, cv::Size(width, height));
+        cv::resize(img_, img_, cv::Size(size.x, size.y));
     }
 
-    void OpenCVTinyImage::Crop(int x, int y, int width, int height)
+    void OpenCVTinyImage::Crop(glm::uvec4 rect)
     {
-        cv::Rect roi(x, y, width, height);
+        cv::Rect roi(rect.x, rect.y, rect.z, rect.w);
         img_ = img_(roi);
     }
 
-    std::tuple<int, int> OpenCVTinyImage::Size() const
+    glm::uvec2 OpenCVTinyImage::Size() const
     {
         return { img_.cols, img_.rows };
+    }
+
+    void* OpenCVTinyImage::Data() const
+    {
+        return static_cast<void*>(img_.data);
     }
 
 } // End namespace tiny image.

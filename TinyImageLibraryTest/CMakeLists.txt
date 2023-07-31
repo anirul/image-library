@@ -16,7 +16,6 @@ target_link_libraries(tiny_image_library_test
         tiny_image_library
         GTest::gtest
         glm::glm
-        opencv_core
 )
 
 include(GoogleTest)

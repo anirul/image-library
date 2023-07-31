@@ -33,3 +33,4 @@
 
 # Build directory removal.
 [Bb]uild/**
+asset/**

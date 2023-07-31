@@ -1,19 +1,19 @@
 {
     "name": "ZoomApp",
     "default_texture_name": "tiny_image",
-    "texture": [
+    "textures": [
         {
             "name": "tiny_image",
             "size": { "x": -1, "y": -1 },
             "cubemap": false,
             "pixel_element_size": { "value": "BYTE" },
-            "pixel_structure": { "value": "RGBA" }
+            "pixel_structure": { "value": "RGB_ALPHA" }
         }
     ],
     "programs": [
         {
             "name": "DisplayProgram",
-            "output_texture_name": "tiny_image",
+            "output_texture_names": "tiny_image",
             "input_scene_type": { "value": "QUAD" },
             "shader": "display"
         }

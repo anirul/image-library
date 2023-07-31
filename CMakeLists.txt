@@ -15,6 +15,9 @@ find_package(glm CONFIG REQUIRED)
 find_package(GTest CONFIG REQUIRED)
 find_package(OpenCV CONFIG REQUIRED)
 
+# Add submodules
+add_subdirectory(submodules/Frame)
+
 # Sources
 add_subdirectory(TinyImageLibrary)
 add_subdirectory(TinyImageLibraryTest)

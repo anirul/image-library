@@ -1,5 +1,6 @@
 add_executable(zoom_app
     main.cpp
+    zoom_app.json
 )
 
 target_include_directories(zoom_app

@@ -6,7 +6,23 @@
     "dependencies": [
         "abseil",
         "glm",
+        "glew",
         "gtest",
-        "opencv"
+        "happly",
+        {
+        "name": "imgui",
+        "features": [ "opengl3-binding", "sdl2-binding", "docking-experimental" ]
+        },
+        "opencv",
+        "opengl",
+        "protobuf",
+        {
+        "name": "sdl2",
+        "features": [ "vulkan" ]
+        },
+        "spdlog",
+        "stb",
+        "tinyobjloader",
+        "vulkan"
     ]
 }

@@ -1,6 +1,8 @@
 #include "TinyImageLibrary/opencv_tiny_image.h"
 
 #include <stdexcept>
+#include <iostream>
+#include <format>
 
 namespace tiny_image {
 
@@ -10,6 +12,23 @@ namespace tiny_image {
         if (img_.empty()) {
             throw std::runtime_error("Failed to open image.");
         }
+        // Look if this is a 3 color image and convert it to RGB.
+        if (img_.channels() == 3 && img_.depth() == CV_8U) {
+            cv::cvtColor(img_, img_, cv::COLOR_BGR2RGBA);
+        }
+        // Look if this is a 4 color image and convert it to RGB.
+        else if (img_.channels() == 4 && img_.depth() == CV_8U) {
+            cv::cvtColor(img_, img_, cv::COLOR_BGRA2RGBA);
+        }
+        else {
+            throw std::runtime_error(
+                std::format(
+                    "Not a valid format channels {} and depth {}",
+                    img_.channels(),
+                    img_.depth()));
+        }
+        // Flip the image to match the OpenGL coordinate system.
+        cv::flip(img_, img_, 0);
     }
 
     void OpenCVTinyImage::Save(std::string_view filename)

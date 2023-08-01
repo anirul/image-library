@@ -30,6 +30,37 @@ ABSL_FLAG(std::string, input_file, "", "Input file image to be process.");
 ABSL_FLAG(std::string, json_file, "", "JSON file for the windowing system.");
 ABSL_FLAG(std::string, output_file, "", "Output file image to be saved.");
 
+void DrawWindow(tiny_image::TinyImageInterface* tiny_image_interface) {
+    frame::common::Application app(
+    frame::CreateNewWindow(
+        frame::DrawingTargetEnum::WINDOW,
+        frame::RenderingAPIEnum::OPENGL,
+        { 1280, 720 }));
+    // Now load the JSON file into a level.
+    auto level = frame::proto::ParseLevel(
+        { 1280, 720 },
+        frame::file::FindFile(absl::GetFlag(FLAGS_json_file)));
+    auto* level_ptr = level.get();
+    // Start the application load.
+    app.Startup(std::move(level));
+    app.Run([&tiny_image_interface, &level_ptr] {
+        for (auto id : level_ptr->GetAllTextures()) {
+            auto& texture = level_ptr->GetTextureFromId(id);
+            auto name = texture.GetName();
+            if (name == "tiny_image") {
+                const glm::uvec2 size = tiny_image_interface->Size();
+                // FIXME(anirul): Bad copy this should be avoided in the future.
+                std::vector<uchar> data(size.x * size.y * 4);
+                std::memcpy(
+                    data.data(),
+                    tiny_image_interface->Data(),
+                    data.size());
+                texture.Update(std::move(data), size, 4);
+            }
+        }
+    });
+}
+
 int main(int ac, char** av) try {
     absl::ParseCommandLine(ac, av);
     std::unique_ptr<tiny_image::TinyImageInterface> tiny_image_interface =
@@ -43,13 +74,7 @@ int main(int ac, char** av) try {
         return 1;
     }
     tiny_image_interface->Open(absl::GetFlag(FLAGS_input_file));
-    frame::common::Application app(
-    frame::CreateNewWindow(
-        frame::DrawingTargetEnum::WINDOW,
-        frame::RenderingAPIEnum::OPENGL,
-        { 1280, 720 }));
-    app.Startup(frame::file::FindFile(absl::GetFlag(FLAGS_json_file)));
-    app.Run();
+    DrawWindow(tiny_image_interface.get());
     if (absl::GetFlag(FLAGS_output_file).empty()) {
         std::cerr <<
             "Error: output_file is empty the modification won't be saved.\n";

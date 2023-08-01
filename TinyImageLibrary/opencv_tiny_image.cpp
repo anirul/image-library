@@ -44,7 +44,11 @@ namespace tiny_image {
     void OpenCVTinyImage::Crop(glm::uvec4 rect)
     {
         cv::Rect roi(rect.x, rect.y, rect.z, rect.w);
-        img_ = img_(roi);
+        img_ = img_(roi); 
+        // Convert the image to a continuous image to avoid problems with the
+        // image.step != size.y.
+        cv::Mat continuousImage = img_.clone();
+        img_ = continuousImage;
     }
 
     glm::uvec2 OpenCVTinyImage::Size() const
@@ -55,6 +59,20 @@ namespace tiny_image {
     void* OpenCVTinyImage::Data() const
     {
         return static_cast<void*>(img_.data);
+    }
+
+    std::unique_ptr<tiny_image::TinyImageInterface> 
+        OpenCVTinyImage::Clone() const
+    {
+        auto clone = std::make_unique<OpenCVTinyImage>();
+        clone->img_ = img_.clone();
+        return clone;
+    }
+
+    void OpenCVTinyImage::Copy(const TinyImageInterface* other)
+    {
+        const auto* opencv_ptr = dynamic_cast<const OpenCVTinyImage*>(other);
+        img_ = opencv_ptr->img_.clone();
     }
 
 } // End namespace tiny image.

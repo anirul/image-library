@@ -30,7 +30,7 @@ ABSL_FLAG(std::string, input_file, "", "Input file image to be process.");
 ABSL_FLAG(std::string, json_file, "", "JSON file for the windowing system.");
 ABSL_FLAG(std::string, output_file, "", "Output file image to be saved.");
 
-void DrawWindow(tiny_image::TinyImageInterface* tiny_image_interface) {
+void DrawWindow(tiny_image::TinyImageInterface* tiny_image_interface_ptr) {
     frame::common::Application app(
     frame::CreateNewWindow(
         frame::DrawingTargetEnum::WINDOW,
@@ -43,17 +43,33 @@ void DrawWindow(tiny_image::TinyImageInterface* tiny_image_interface) {
     auto* level_ptr = level.get();
     // Start the application load.
     app.Startup(std::move(level));
-    app.Run([&tiny_image_interface, &level_ptr] {
+    auto clone = tiny_image_interface_ptr->Clone();
+    auto* clone_ptr = clone.get();
+    app.Run([&clone_ptr, &tiny_image_interface_ptr, level_ptr] {
         for (auto id : level_ptr->GetAllTextures()) {
             auto& texture = level_ptr->GetTextureFromId(id);
             auto name = texture.GetName();
             if (name == "tiny_image") {
-                const glm::uvec2 size = tiny_image_interface->Size();
+                glm::uvec2 size = tiny_image_interface_ptr->Size();
+                static bool switch_bool = false;
+                if (size.x <= 10 || size.y <= 10) {
+                    tiny_image_interface_ptr->Copy(clone_ptr);
+                    switch_bool = !switch_bool;
+                } else {
+                    if (switch_bool) {
+                        tiny_image_interface_ptr->Crop(
+                            { 1, 1, size.x - 2, size.y  - 2});
+                    } else {
+                        tiny_image_interface_ptr->Resize(
+                            { size.x - 2, size.y - 2 });
+                    }
+                }
+                size = tiny_image_interface_ptr->Size();
                 // FIXME(anirul): Bad copy this should be avoided in the future.
-                std::vector<uchar> data(size.x * size.y * 4);
+                std::vector<unsigned char> data(size.x * size.y * 4);
                 std::memcpy(
                     data.data(),
-                    tiny_image_interface->Data(),
+                    tiny_image_interface_ptr->Data(),
                     data.size());
                 texture.Update(std::move(data), size, 4);
             }

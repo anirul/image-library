@@ -2,6 +2,7 @@
 
 #include <string_view>
 #include <glm/glm.hpp>
+#include <memory>
 
 namespace tiny_image {
 
@@ -14,6 +15,10 @@ namespace tiny_image {
         virtual glm::uvec2 Size() const = 0;
         // Get a pointer to the content of the image.
         virtual void* Data() const = 0;
+        // Make a clone of the image.
+        virtual std::unique_ptr<TinyImageInterface> Clone() const = 0;
+        // Make a copy of the image in the current image.
+        virtual void Copy(const TinyImageInterface* other) = 0;
 
         // This is the interface that is asked.
         // Open a file from the disk to the image.

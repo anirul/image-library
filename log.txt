@@ -1,0 +1,20 @@
+[2023-08-01 12:12:58.863] [log] [info] start logging!
+[2023-08-01 12:12:59.167] [log] [info] Created an SDL2 window.
+[2023-08-01 12:12:59.332] [log] [info] NVIDIA GeForce RTX 2070 SUPER/PCIe/SSE2
+[2023-08-01 12:12:59.332] [log] [info] Started SDL OpenGL version 4.5.
+[2023-08-01 12:13:00.887] [log] [info] GL: Buffer detailed info: Buffer object 3 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. (source [Calls to the OpenGL API], type [Some type that isn't one of these], severity [Anything that isn't an error or performance issue])
+[2023-08-01 12:13:00.888] [log] [info] GL: Buffer detailed info: Buffer object 1 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. (source [Calls to the OpenGL API], type [Some type that isn't one of these], severity [Anything that isn't an error or performance issue])
+[2023-08-01 12:13:00.888] [log] [info] GL: Buffer detailed info: Buffer object 4 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. (source [Calls to the OpenGL API], type [Some type that isn't one of these], severity [Anything that isn't an error or performance issue])
+[2023-08-01 12:13:00.888] [log] [info] GL: Buffer detailed info: Buffer object 5 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. (source [Calls to the OpenGL API], type [Some type that isn't one of these], severity [Anything that isn't an error or performance issue])
+[2023-08-01 12:13:00.888] [log] [info] GL: Buffer detailed info: Buffer object 6 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. (source [Calls to the OpenGL API], type [Some type that isn't one of these], severity [Anything that isn't an error or performance issue])
+[2023-08-01 12:13:00.888] [log] [info] GL: Buffer detailed info: Buffer object 7 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. (source [Calls to the OpenGL API], type [Some type that isn't one of these], severity [Anything that isn't an error or performance issue])
+[2023-08-01 12:13:00.888] [log] [info] GL: Buffer detailed info: Buffer object 8 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. (source [Calls to the OpenGL API], type [Some type that isn't one of these], severity [Anything that isn't an error or performance issue])
+[2023-08-01 12:13:00.888] [log] [info] GL: Buffer detailed info: Buffer object 9 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. (source [Calls to the OpenGL API], type [Some type that isn't one of these], severity [Anything that isn't an error or performance issue])
+[2023-08-01 12:13:00.888] [log] [info] GL: Buffer detailed info: Buffer object 10 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. (source [Calls to the OpenGL API], type [Some type that isn't one of these], severity [Anything that isn't an error or performance issue])
+[2023-08-01 12:13:00.888] [log] [info] Add a new texture tiny_image, with id [11].
+[2023-08-01 12:13:00.889] [log] [info] Creating program
+[2023-08-01 12:13:00.893] [log] [info] Uniform [display] count: 1
+[2023-08-01 12:13:00.893] [log] [info] Uniform: Display, type 35678, size [1].
+[2023-08-01 12:13:00.893] [log] [info] with pointer := 0x21785fa8de0
+[2023-08-01 12:13:00.893] [log] [info] GL: Framebuffer detailed info: The driver allocated storage for renderbuffer 1. (source [Calls to the OpenGL API], type [Some type that isn't one of these], severity [Redundant state change performance warning, or unimportant undefined behavior])
+[2023-08-01 12:13:00.89

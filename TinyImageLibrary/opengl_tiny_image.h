@@ -1,17 +1,15 @@
 #pragma once
 
-#include "TinyImageLibrary/tiny_image_interface.h"
+#include <glm/glm.hpp>
 
-#include <opencv2/core/core.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
+#include "TinyImageLibrary/tiny_image_interface.h"
 
 namespace tiny_image {
 
-    class OpenCVTinyImage : public TinyImageInterface {
+    class OpenGLTinyImage : public TinyImageInterface {
     public:
-        OpenCVTinyImage() = default;
-        ~OpenCVTinyImage() override = default;
+        OpenGLTinyImage() = default;
+        ~OpenGLTinyImage() override = default;
 
         // External interface.
         glm::uvec2 Size() const override;
@@ -24,9 +22,6 @@ namespace tiny_image {
         void Save(std::string_view filename) override;
         void Resize(glm::uvec2 size) override;
         void Crop(glm::uvec4 rect) override;
-        
-    protected:
-        cv::Mat img_;
     };
 
-}  // End namespace tiny_image.
+} // End namespace tiny_image.

@@ -1,7 +1,11 @@
 # Tiny Image library
 add_library(tiny_image_library
     STATIC
+        tiny_image_factory.cpp
+        tiny_image_factory.h
         tiny_image_interface.h
+        opengl_tiny_image.cpp
+        opengl_tiny_image.h
         opencv_tiny_image.cpp
         opencv_tiny_image.h
 )

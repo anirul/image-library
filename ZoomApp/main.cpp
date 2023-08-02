@@ -24,7 +24,7 @@
 #include "frame/json/parse_level.h"
 #include "frame/json/proto.h"
 #include "frame/window_factory.h"
-#include "TinyImageLibrary/opencv_tiny_image.h"
+#include "TinyImageLibrary/tiny_image_factory.h"
 
 ABSL_FLAG(std::string, input_file, "", "Input file image to be process.");
 ABSL_FLAG(std::string, json_file, "", "JSON file for the windowing system.");
@@ -80,7 +80,7 @@ void DrawWindow(tiny_image::TinyImageInterface* tiny_image_interface_ptr) {
 int main(int ac, char** av) try {
     absl::ParseCommandLine(ac, av);
     std::unique_ptr<tiny_image::TinyImageInterface> tiny_image_interface =
-        std::make_unique<tiny_image::OpenCVTinyImage>();
+        tiny_image::CreateTinyImage(tiny_image::LibraryEnum::OPEN_CV);
     if (absl::GetFlag(FLAGS_input_file).empty()) {
         std::cerr << "Error: input_file is empty.\n";
         return 1;

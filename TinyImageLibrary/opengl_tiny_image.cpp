@@ -4,12 +4,12 @@ namespace tiny_image {
 
     glm::uvec2 OpenGLTinyImage::Size() const
     {
-        return { 0, 0 };
+        return texture_->GetSize();
     }
 
-    void* OpenGLTinyImage::Data() const
+    std::vector<std::uint8_t> OpenGLTinyImage::Data() const
     {
-        return nullptr;
+        return std::move(texture_->GetTextureByte());
     }
 
     std::unique_ptr<tiny_image::TinyImageInterface> 

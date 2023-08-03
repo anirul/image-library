@@ -14,6 +14,7 @@ namespace tiny_image {
         case LibraryEnum::OPEN_GL:
             return std::make_unique<OpenGLTinyImage>();
         }
+        return nullptr;
     }
 
 } // End namespace tiny image.

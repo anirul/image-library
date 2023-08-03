@@ -1,8 +1,10 @@
 #pragma once
 
-#include <string_view>
 #include <glm/glm.hpp>
+
+#include <string_view>
 #include <memory>
+#include <vector>
 
 namespace tiny_image {
 
@@ -14,7 +16,7 @@ namespace tiny_image {
         // Get the size of the loaded image.
         virtual glm::uvec2 Size() const = 0;
         // Get a pointer to the content of the image.
-        virtual void* Data() const = 0;
+        virtual std::vector<std::uint8_t> Data() const = 0;
         // Make a clone of the image.
         virtual std::unique_ptr<TinyImageInterface> Clone() const = 0;
         // Make a copy of the image in the current image.

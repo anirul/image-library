@@ -65,13 +65,10 @@ void DrawWindow(tiny_image::TinyImageInterface* tiny_image_interface_ptr) {
                     }
                 }
                 size = tiny_image_interface_ptr->Size();
-                // FIXME(anirul): Bad copy this should be avoided in the future.
-                std::vector<unsigned char> data(size.x * size.y * 4);
-                std::memcpy(
-                    data.data(),
-                    tiny_image_interface_ptr->Data(),
-                    data.size());
-                texture.Update(std::move(data), size, 4);
+                texture.Update(
+                    std::move(tiny_image_interface_ptr->Data()), 
+                    size, 
+                    4);
             }
         }
     });

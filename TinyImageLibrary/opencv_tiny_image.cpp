@@ -9,7 +9,7 @@ namespace tiny_image {
     void OpenCVTinyImage::Open(std::string_view filename)
     {
         img_ = cv::imread(filename.data(), cv::IMREAD_COLOR);
-        if (img_.empty()) {
+        if (img_.empty() || img_.cols == 0) {
             throw std::runtime_error("Failed to open image.");
         }
         // Look if this is a 3 color image and convert it to RGB.
@@ -56,9 +56,12 @@ namespace tiny_image {
         return { img_.cols, img_.rows };
     }
 
-    void* OpenCVTinyImage::Data() const
+    std::vector<std::uint8_t> OpenCVTinyImage::Data() const
     {
-        return static_cast<void*>(img_.data);
+        std::vector<std::uint8_t> data;
+        data.resize(Size().x * Size().y * 4);
+        std::memcpy(data.data(), img_.data, data.size());
+        return data;
     }
 
     std::unique_ptr<tiny_image::TinyImageInterface> 

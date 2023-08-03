@@ -2,6 +2,8 @@
 
 #include "TinyImageLibrary/tiny_image_interface.h"
 
+#include <vector>
+
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -15,7 +17,7 @@ namespace tiny_image {
 
         // External interface.
         glm::uvec2 Size() const override;
-        void* Data() const override;
+        std::vector<std::uint8_t> Data() const override;
         std::unique_ptr<TinyImageInterface> Clone() const override;
         void Copy(const TinyImageInterface* other) override;
 

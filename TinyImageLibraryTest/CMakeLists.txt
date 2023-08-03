@@ -1,7 +1,7 @@
 add_executable(tiny_image_library_test
     main.cpp
-    opencv_tiny_image_test.cpp
-    opencv_tiny_image_test.h
+    tiny_image_test.cpp
+    tiny_image_test.h
 )
 
 target_include_directories(tiny_image_library_test

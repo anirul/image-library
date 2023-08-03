@@ -5,6 +5,7 @@
     "description": "An image independent simple library.",
     "dependencies": [
         "abseil",
+        "benchmark",
         "glm",
         "glew",
         "gtest",

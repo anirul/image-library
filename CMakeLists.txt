@@ -11,6 +11,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # External packages.
 find_package(absl CONFIG REQUIRED)
+find_package(benchmark CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
 find_package(GTest CONFIG REQUIRED)
 find_package(OpenCV CONFIG REQUIRED)
@@ -21,4 +22,5 @@ add_subdirectory(submodules/Frame)
 # Sources
 add_subdirectory(TinyImageLibrary)
 add_subdirectory(TinyImageLibraryTest)
+add_subdirectory(TinyImageBenchmark)
 add_subdirectory(ZoomApp)

@@ -13,6 +13,7 @@ add_library(tiny_image_library
 target_include_directories(tiny_image_library
     PUBLIC
         ${CMAKE_SOURCE_DIR}
+        ${CMAKE_SOURCE_DIR}/submodules/Frame/include
         ${CMAKE_CURRENT_BINARY_DIR}
 )
 
@@ -23,6 +24,12 @@ target_link_libraries(tiny_image_library
         opencv_highgui 
         opencv_imgcodecs 
         opencv_imgproc
+        Frame
+        FrameCommon
+        FrameGui
+        FrameOpenGL
+        FrameOpenGLGui
+        FrameProto
 )
 
 set_property(TARGET tiny_image_library PROPERTY FOLDER "TinyImageLibrary")
